@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Documents\\Notas_Academicas\\Notas_Academicas.csproj": {}
+    "C:\\Users\\Usuario\\Desktop\\Poyecto_Notas_Academicas\\Notas_Academicas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Documents\\Notas_Academicas\\Notas_Academicas.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\Poyecto_Notas_Academicas\\Notas_Academicas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Notas_Academicas\\Notas_Academicas.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Poyecto_Notas_Academicas\\Notas_Academicas.csproj",
         "projectName": "Notas_Academicas",
-        "projectPath": "C:\\Users\\Usuario\\Documents\\Notas_Academicas\\Notas_Academicas.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\Poyecto_Notas_Academicas\\Notas_Academicas.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Documents\\Notas_Academicas\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\Poyecto_Notas_Academicas\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
