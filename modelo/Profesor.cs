@@ -1,3 +1,5 @@
+using SistemaNotas.Utilidades;
+
 namespace SistemaNotas.Modelo
 {
     public class Profesor : Persona
@@ -10,7 +12,7 @@ namespace SistemaNotas.Modelo
         public string Especialidad
         {
             get { return especialidad; }
-            set { especialidad = value; }
+            set { especialidad = Normalizador.NormalizarTexto(value); }
         }
 
         public double Salario
@@ -31,7 +33,7 @@ namespace SistemaNotas.Modelo
 
         // CONSTRUCTOR
         public Profesor(
-            int ,
+            int id,
             int edad,
             string nombre,
             string documento,
