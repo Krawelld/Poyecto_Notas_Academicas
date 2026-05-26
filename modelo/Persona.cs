@@ -1,12 +1,10 @@
-using SistemaNotas.Utilidades;
-
 namespace SistemaNotas.Modelo
 {    
     public abstract class Persona
     {
         // ATRIBUTOS PRIVADOS
         private int id;
-        private int edad;
+        private double edad;
         private string nombre;
         private string documento;
         private string correo;
@@ -29,7 +27,7 @@ namespace SistemaNotas.Modelo
         public string Nombre
         {
             get { return nombre; }
-            set { nombre = Normalizador.NormalizarNombre(value); }
+            set { nombre = value; }
         }
 
         public string Documento
@@ -39,7 +37,7 @@ namespace SistemaNotas.Modelo
             {
                 if(value.Length >= 7 && value.Length <= 10)
                 {
-                    documento = Normalizador.NormalizarDocumento(value);
+                    documento = value;
                 }
                 else
                 {
@@ -51,7 +49,7 @@ namespace SistemaNotas.Modelo
         public string Correo
         {
             get { return correo; }
-            set { correo = Normalizador.NormalizarCorreo(value); }
+            set { correo = value; }
         }
 
         // CONSTRUCTOR

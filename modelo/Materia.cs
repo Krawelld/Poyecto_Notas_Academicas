@@ -1,5 +1,3 @@
-using SistemaNotas.Utilidades;
-
 namespace SistemaNotas.Modelo
 {
     public class Materia
@@ -18,7 +16,7 @@ namespace SistemaNotas.Modelo
         public string Nombre
         {
             get { return nombre; }
-            set { nombre = Normalizador.NormalizarNombre(value); }
+            set { nombre = value; }
         }
 
         // CONSTRUCTOR

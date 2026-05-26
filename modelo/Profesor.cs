@@ -31,7 +31,7 @@ namespace SistemaNotas.Modelo
 
         // CONSTRUCTOR
         public Profesor(
-            int id,
+            int ,
             int edad,
             string nombre,
             string documento,

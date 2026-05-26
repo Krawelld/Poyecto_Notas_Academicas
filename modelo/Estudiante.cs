@@ -5,6 +5,7 @@ namespace SistemaNotas.Modelo
         // ATRIBUTOS PRIVADOS
         private double promedio;
         private string grado;
+        private Materia materia;
         private List<Nota> notas;
 
         // PROPIEDADES PÚBLICAS
@@ -29,7 +30,13 @@ namespace SistemaNotas.Modelo
             set { grado = value; }
         }
 
-        //LISTA PARA GUARDAR NOTAS
+        public Materia Materia
+        {
+            get {return materia; }
+            set {materia = value; }
+        }
+
+        //Lista para guardar notas
         public List<Nota> Notas
         {
             get { return notas; }
@@ -76,26 +83,6 @@ namespace SistemaNotas.Modelo
             }
 
             return resultado;
-        }
-
-        public double CalcularPromedio()
-        {
-            // VALIDAR SI HAY NOTAS
-            if(notas.Count == 0)
-            {
-                return 0;
-            }
-
-            double suma = 0;
-
-            // RECORRER LAS NOTAS
-            foreach(Nota nota in notas)
-            {
-                suma += nota.ValorNota;
-            }
-
-            // CALCULAR PROMEDIO
-            return suma / notas.Count;
         }
 
         // MÉTODO OVERRIDE
