@@ -48,5 +48,15 @@
       "Nombre": "Programaci\u00F3n"
     },
     "EstudianteID": 3
+  },
+  {
+    "IdNota": 6,
+    "Periodo": "2025-1",
+    "ValorNota": 4.5,
+    "Materia": {
+      "Codigo": "SOCIA025",
+      "Nombre": "Sociales"
+    },
+    "EstudianteID": 1
   }
 ]

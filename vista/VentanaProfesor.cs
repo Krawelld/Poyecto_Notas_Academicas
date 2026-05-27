@@ -183,8 +183,10 @@ namespace InterfazGrafica
             string valorTexto = MostrarInputBox("Valor de la nota (0 a 5):", "Nota");
             if (string.IsNullOrEmpty(valorTexto)) return;
 
+            // Aceptar tanto punto como coma para decimales
+            valorTexto = valorTexto.Replace(',', '.');
             double valorNota;
-            if (!double.TryParse(valorTexto, out valorNota) || valorNota < 0 || valorNota > 5)
+            if (!double.TryParse(valorTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out valorNota) || valorNota < 0 || valorNota > 5)
             {
                 MessageBox.Show("Nota inválida. Debe ser entre 0 y 5.");
                 return;
@@ -250,8 +252,10 @@ namespace InterfazGrafica
             string nuevoValorTexto = MostrarInputBox("Nuevo valor de la nota (0 a 5):", "Nueva Nota");
             if (string.IsNullOrEmpty(nuevoValorTexto)) return;
 
+            // Aceptar tanto punto como coma para decimales
+            nuevoValorTexto = nuevoValorTexto.Replace(',', '.');
             double nuevoValor;
-            if (!double.TryParse(nuevoValorTexto, out nuevoValor) || nuevoValor < 0 || nuevoValor > 5)
+            if (!double.TryParse(nuevoValorTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out nuevoValor) || nuevoValor < 0 || nuevoValor > 5)
             {
                 MessageBox.Show("Nota inválida. Debe ser entre 0 y 5.");
                 return;
