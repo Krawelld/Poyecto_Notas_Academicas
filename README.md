@@ -35,21 +35,21 @@ Antes de ejecutar el proyecto se necesita:
 - Tener Git instalado
 - Sistema operativo Windows
 
-# :rocket: Pasos de instalación
+# :rocket: Instalación y ejecución
 
-Clonar el repositorio:
-
-```bash
-git clone https://github.com/usuario/notas-academicas.git
-```
-
-Entrar a la carpeta del proyecto:
+## Clonar el repositorio
 
 ```bash
-cd notas-academicas
+git clone https://github.com/Krawelld/Poyecto_Notas_Academicas.git
 ```
 
-Restaurar dependencias:
+## Entrar a la carpeta del proyecto
+
+```bash
+cd Poyecto_Notas_Academicas
+```
+
+## Restaurar dependencias
 
 ```bash
 dotnet restore
@@ -57,23 +57,15 @@ dotnet restore
 
 ---
 
-# :arrow_forward: Pasos de ejecución
+# :arrow_forward: Ejecutar el proyecto
 
-Abrir el archivo `.sln` en Visual Studio y ejecutar el proyecto.
+## Opción 1: Visual Studio
 
-O desde terminal:
+1. Abrir el archivo `.sln`
+2. Presionar el botón **Start** o **Iniciar**
+
+## Opción 2: Terminal
 
 ```bash
 dotnet run
 ```
-
----
-
-# :memo: Ejemplo de uso
-
-1. Abrir la aplicación.
-2. Registrar un estudiante.
-3. Registrar una materia.
-4. Registrar una nota.
-5. Consultar el promedio del estudiante.
-6. Visualizar las notas registradas.
