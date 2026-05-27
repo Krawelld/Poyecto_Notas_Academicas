@@ -69,3 +69,66 @@ dotnet restore
 ```bash
 dotnet run
 ```
+# :framed_picture: Capturas de pantalla
+
+## :house: Menú principal
+
+
+
+---
+
+## :student: Registro de estudiantes
+
+
+
+---
+
+## :memo: Registro de notas
+
+
+
+
+# :brain: Arquitectura y diagramas UML
+
+## Arquitectura del sistema
+
+- Modelo
+- Vista
+- Servicios
+- Utilidades
+
+---
+
+## :chart_with_upwards_trend: Diagrama UML
+
+<p align="center">
+  <img src="Diagramas/UML.png" width="900">
+</p>
+
+
+# :white_check_mark: Funcionalidades implementadas
+
+-  Registro de estudiantes
+-  Registro de profesores
+-  Registro de materias
+-  Registro de notas
+-  Cálculo de promedios
+-  Validaciones
+-  Búsqueda de estudiantes
+-  Eliminación de registros
+
+# :lock: Limitaciones conocidas
+
+- No utiliza base de datos.
+- No guarda datos al cerrar.
+- Solo funciona en Windows.
+- No tiene autenticación.
+
+# :crystal_ball: Mejoras futuras
+
+- Implementar SQL Server.
+- Exportar reportes PDF.
+- Agregar inicio de sesión.
+- Mejorar la interfaz gráfica.
+- Generar estadísticas académicas.
+
