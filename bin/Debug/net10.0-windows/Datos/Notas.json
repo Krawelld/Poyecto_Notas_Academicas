@@ -5,17 +5,17 @@
     "ValorNota": 4.5,
     "Materia": {
       "Codigo": "MAT101",
-      "Nombre": "Matemáticas"
+      "Nombre": "Matem\u00E1ticas"
     },
     "EstudianteID": 1
   },
   {
     "IdNota": 2,
     "Periodo": "2025-1",
-    "ValorNota": 3.8,
+    "ValorNota": 2,
     "Materia": {
       "Codigo": "PRG201",
-      "Nombre": "Programación"
+      "Nombre": "Programaci\u00F3n"
     },
     "EstudianteID": 1
   },
@@ -25,7 +25,7 @@
     "ValorNota": 4.2,
     "Materia": {
       "Codigo": "FIS101",
-      "Nombre": "Física"
+      "Nombre": "F\u00EDsica"
     },
     "EstudianteID": 1
   },
@@ -35,17 +35,17 @@
     "ValorNota": 3.5,
     "Materia": {
       "Codigo": "MAT101",
-      "Nombre": "Matemáticas"
+      "Nombre": "Matem\u00E1ticas"
     },
     "EstudianteID": 3
   },
   {
     "IdNota": 5,
     "Periodo": "2025-1",
-    "ValorNota": 4.0,
+    "ValorNota": 4,
     "Materia": {
       "Codigo": "PRG201",
-      "Nombre": "Programación"
+      "Nombre": "Programaci\u00F3n"
     },
     "EstudianteID": 3
   }

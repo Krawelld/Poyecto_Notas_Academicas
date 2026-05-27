@@ -7,7 +7,7 @@
     "Correo": "alejo@gmail.com",
     "Rol": "estudiante",
     "Password": "123",
-    "Grado": "5to Semestre - Ingeniería de Sistemas"
+    "Grado": "10 grado Bacchiller"
   },
   {
     "ID": 2,
@@ -26,6 +26,6 @@
     "Correo": "tomas@gmail.com",
     "Rol": "estudiante",
     "Password": "1234",
-    "Grado": "3er Semestre - Ingeniería de Sistemas"
+    "Grado": "9-grado Bachiller"
   }
 ]
