@@ -88,23 +88,136 @@ dotnet run
 
 
 
-# :brain: Arquitectura y diagramas UML
+# :brain: Arquitectura del sistema
 
-## Arquitectura del sistema
+El proyecto fue desarrollado utilizando una arquitectura modular basada en separación de responsabilidades, permitiendo una mejor organización del código y facilitando el mantenimiento del sistema.
 
-- Modelo
-- Vista
-- Servicios
-- Utilidades
+Cada carpeta cumple una función específica dentro de la aplicación.
+
+## :bar_chart: Diagramas
+
+Almacena diagramas UML y recursos visuales del proyecto.
+
+- ·aqui ponga la imagen
+
+# :file_folder: Estructura de carpetas
+
+```text
+Poyecto_Notas_Academicas/
+│
+├── Datos/
+├── papelera/
+├── documentos/
+├── modelo/
+├── objeto/
+├── servicios/
+├── utilidades/
+├── vista/
+│
+├── Notas_Academicas.csproj
+├── Programa.cs
+└── README.md
+```
 
 ---
 
-## :chart_with_upwards_trend: Diagrama UML
+# :gear: Responsabilidades de los módulos
 
-<p align="center">
-  <img src="Diagramas/UML.png" width="900">
-</p>
+## :floppy_disk: Datos
 
+Contiene archivos relacionados con almacenamiento de información del sistema.
+
+Responsabilidades:
+- Guardar información.
+- Administrar archivos de datos.
+- Manejar persistencia local.
+
+---
+
+## :wastebasket: papelera
+
+Contiene elementos descartados o archivos temporales utilizados durante el desarrollo.
+
+Responsabilidades:
+- Almacenar recursos no utilizados.
+- Mantener respaldo temporal de archivos.
+
+---
+
+## :page_facing_up: documentos
+
+Contiene documentación relacionada con el proyecto.
+
+Responsabilidades:
+- Manuales.
+- Archivos PDF.
+- Recursos documentales.
+- Evidencias del proyecto.
+
+---
+
+## :card_index: modelo
+
+Contiene las clases principales del sistema.
+
+Ejemplos:
+- Persona
+- Estudiante
+- Profesor
+- Materia
+- Nota
+
+Responsabilidades:
+- Representar entidades académicas.
+- Definir atributos y métodos.
+- Aplicar herencia y encapsulamiento.
+
+---
+
+## :package: objeto
+
+Contiene objetos auxiliares y estructuras utilizadas por el sistema.
+
+Responsabilidades:
+- Manejo de objetos personalizados.
+- Apoyo a la lógica del sistema.
+
+---
+
+## :hammer_and_wrench: servicios
+
+Contiene la lógica de negocio de la aplicación.
+
+Responsabilidades:
+- Registrar información.
+- Buscar datos.
+- Calcular promedios.
+- Procesar operaciones académicas.
+- Validar procesos.
+
+---
+
+## :toolbox: utilidades
+
+Contiene funciones auxiliares reutilizables.
+
+Responsabilidades:
+- Validaciones.
+- Conversión de datos.
+- Métodos de apoyo.
+- Mensajes y formatos.
+
+---
+
+## :desktop_computer: vista
+
+Contiene la interfaz gráfica desarrollada en Windows Forms.
+
+Responsabilidades:
+- Formularios.
+- Ventanas del sistema.
+- Interacción con el usuario.
+- Captura y visualización de datos.
 
 # :white_check_mark: Funcionalidades implementadas
 
