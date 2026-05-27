@@ -1,0 +1,31 @@
+[
+  {
+    "ID": 1,
+    "Edad": 20,
+    "Nombre": "Alejo",
+    "Documento": "12345678",
+    "Correo": "alejo@gmail.com",
+    "Rol": "estudiante",
+    "Password": "123",
+    "Grado": "5to Semestre - Ingeniería de Sistemas"
+  },
+  {
+    "ID": 2,
+    "Edad": 40,
+    "Nombre": "Carlos",
+    "Documento": "87654321",
+    "Correo": "carlos@gmail.com",
+    "Rol": "docente",
+    "Password": "456"
+  },
+  {
+    "ID": 3,
+    "Edad": 21,
+    "Nombre": "Tomas",
+    "Documento": "123456789",
+    "Correo": "tomas@gmail.com",
+    "Rol": "estudiante",
+    "Password": "1234",
+    "Grado": "3er Semestre - Ingeniería de Sistemas"
+  }
+]

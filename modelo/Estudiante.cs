@@ -4,9 +4,9 @@ namespace SistemaNotas.Modelo
     {
         // ATRIBUTOS PRIVADOS
         private double promedio;
-        private string grado;
-        private Materia materia;
-        private List<Nota> notas;
+        private string grado = string.Empty;
+        private Materia materia = null!;
+        private List<Nota> notas = new List<Nota>();
 
         // PROPIEDADES PÚBLICAS
         public double Promedio
@@ -42,16 +42,24 @@ namespace SistemaNotas.Modelo
             get { return notas; }
         }
 
-        // CONSTRUCTOR
+        // CONSTRUCTOR VACÍO (necesario para deserializar JSON)
+        public Estudiante() 
+        { 
+            notas = new List<Nota>(); 
+        }
+
+        // CONSTRUCTOR CON PARÁMETROS
         public Estudiante(
             int id,
             int edad,
             string nombre,
             string documento,
             string correo,
+            string rol,
+            string password,
             string grado,
             double promedio
-        ) : base(id, edad, nombre, documento, correo)
+        ) : base(id, edad, nombre, documento, correo, rol, password)
         {
             this.promedio = promedio;
             this.grado = grado;

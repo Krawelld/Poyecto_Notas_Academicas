@@ -2,6 +2,8 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using SistemaNotas.Servicios;
+using SistemaNotas.Modelo;
 
 namespace InterfazGrafica
 {
@@ -14,6 +16,10 @@ namespace InterfazGrafica
         private Button btnGrado;
         private Button btnCerrarSesion;
 
+        // ID del estudiante para consultar sus notas
+        private int estudianteID;
+        private string gradoEstudiante;
+
         // Colores del tema
         private readonly Color colorPrimario = Color.FromArgb(37, 99, 235);
         private readonly Color colorFondo = Color.FromArgb(248, 250, 252);
@@ -25,8 +31,10 @@ namespace InterfazGrafica
         private readonly Color colorVerde = Color.FromArgb(34, 197, 94);
         private readonly Color colorNaranja = Color.FromArgb(249, 115, 22);
 
-        public VentanaEstudiante(string nombreUsuario)
+        public VentanaEstudiante(string nombreUsuario, int id, string grado)
         {
+            this.estudianteID = id;
+            this.gradoEstudiante = grado;
             // Configuración ventana
             this.Text = "Panel Estudiante - Sistema Académico";
             this.Size = new Size(780, 520);
@@ -98,14 +106,17 @@ namespace InterfazGrafica
             // Botón notas
             btnNotas = CrearBotonMenu("📝", "Notas", "Consulta tus calificaciones", colorPrimario);
             btnNotas.Location = new Point(80, 215);
+            btnNotas.Click += VerNotas;
 
             // Botón promedio
             btnPromedio = CrearBotonMenu("📊", "Promedio", "Promedio acumulado", colorVerde);
             btnPromedio.Location = new Point(300, 215);
+            btnPromedio.Click += VerPromedio;
 
             // Botón grado
             btnGrado = CrearBotonMenu("🎓", "Grado", "Información de tu grado", colorNaranja);
             btnGrado.Location = new Point(520, 215);
+            btnGrado.Click += VerGrado;
 
             // ===== BOTÓN CERRAR SESIÓN =====
             btnCerrarSesion = new Button();
@@ -180,6 +191,65 @@ namespace InterfazGrafica
             };
 
             return btn;
+        }
+
+        // Evento ver grado
+        private void VerGrado(object? sender, EventArgs e)
+        {
+            MessageBox.Show($"Tu grado actual:\n\n{gradoEstudiante}",
+                "Información de Grado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Evento ver promedio
+        private void VerPromedio(object? sender, EventArgs e)
+        {
+            NotasServicio servicio = new NotasServicio();
+            Nota[] notas = servicio.ObtenerNotasPorEstudiante(estudianteID);
+
+            if (notas.Length == 0)
+            {
+                MessageBox.Show("No tienes notas registradas.",
+                    "Sin notas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Calcular promedio
+            double suma = 0;
+            foreach (Nota nota in notas)
+            {
+                suma += nota.ValorNota;
+            }
+            double promedio = suma / notas.Length;
+
+            MessageBox.Show($"Tu promedio es: {promedio:F2}",
+                "Promedio Académico", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Evento ver notas
+        private void VerNotas(object? sender, EventArgs e)
+        {
+            NotasServicio servicio = new NotasServicio();
+            Nota[] notas = servicio.ObtenerNotasPorEstudiante(estudianteID);
+
+            if (notas.Length == 0)
+            {
+                MessageBox.Show("No tienes notas registradas.",
+                    "Sin notas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string resultado = "MIS NOTAS\n\n";
+
+            foreach (Nota nota in notas)
+            {
+                resultado += $"Materia: {nota.Materia.Nombre}\n";
+                resultado += $"Periodo: {nota.Periodo}\n";
+                resultado += $"Nota: {nota.ValorNota}\n";
+                resultado += "─────────────────\n";
+            }
+
+            MessageBox.Show(resultado, "Notas del Estudiante",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void CerrarSesion(object? sender, EventArgs e)

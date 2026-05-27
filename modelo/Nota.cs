@@ -4,9 +4,10 @@ namespace SistemaNotas.Modelo
     {
         // ATRIBUTOS PRIVADOS
         private int idNota;
-        private string periodo;
+        private string periodo = string.Empty;
         private double valorNota;
-        private Materia materia;
+        private Materia materia = null!;
+        private int estudianteID;
 
         // PROPIEDADES PÚBLICAS
         public int IdNota
@@ -33,7 +34,16 @@ namespace SistemaNotas.Modelo
             set { materia = value; }
         }
 
-        // CONSTRUCTOR
+        public int EstudianteID
+        {
+            get { return estudianteID; }
+            set { estudianteID = value; }
+        }
+
+        // CONSTRUCTOR VACÍO (necesario para deserializar JSON)
+        public Nota() { }
+
+        // CONSTRUCTOR CON PARÁMETROS
         public Nota(int idNota, string periodo, double valorNota, Materia materia)
         {
             this.idNota = idNota;

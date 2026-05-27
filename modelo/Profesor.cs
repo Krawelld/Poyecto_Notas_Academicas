@@ -5,7 +5,7 @@ namespace SistemaNotas.Modelo
     public class Profesor : Persona
     {
         // ATRIBUTOS PRIVADOS
-        private string especialidad;
+        private string especialidad = string.Empty;
         private double salario;
 
         // PROPIEDADES PÚBLICAS
@@ -31,16 +31,21 @@ namespace SistemaNotas.Modelo
             }
         }
 
-        // CONSTRUCTOR
+        // CONSTRUCTOR VACÍO (necesario para deserializar JSON)
+        public Profesor() { }
+
+        // CONSTRUCTOR CON PARÁMETROS
         public Profesor(
             int id,
             int edad,
             string nombre,
             string documento,
             string correo,
+            string rol,
+            string password,
             string especialidad,
             double salario
-        ) : base(id, edad, nombre, documento, correo)
+        ) : base(id, edad, nombre, documento, correo, rol, password)
         {
             this.especialidad = especialidad;
             this.salario = salario;

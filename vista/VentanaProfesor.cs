@@ -2,6 +2,8 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using SistemaNotas.Servicios;
+using SistemaNotas.Modelo;
 
 namespace InterfazGrafica
 {
@@ -140,17 +142,194 @@ namespace InterfazGrafica
 
         private void RegistrarNotas(object? sender, EventArgs e)
         {
-            MessageBox.Show("Módulo Registrar Notas");
+            ProfesorServicio servicio = new ProfesorServicio();
+            Persona[] estudiantes = servicio.ObtenerEstudiantes();
+
+            if (estudiantes.Length == 0)
+            {
+                MessageBox.Show("No hay estudiantes registrados.");
+                return;
+            }
+
+            // Seleccionar estudiante
+            string[] nombres = new string[estudiantes.Length];
+            for (int i = 0; i < estudiantes.Length; i++)
+            {
+                nombres[i] = estudiantes[i].ID + " - " + estudiantes[i].Nombre;
+            }
+
+            string seleccion = MostrarInputBox("Estudiantes:\n" + string.Join("\n", nombres) +
+                "\n\nEscribe el ID del estudiante:", "Registrar Nota");
+
+            if (string.IsNullOrEmpty(seleccion)) return;
+
+            int estudianteID;
+            if (!int.TryParse(seleccion, out estudianteID))
+            {
+                MessageBox.Show("ID inválido.");
+                return;
+            }
+
+            // Pedir datos de la nota
+            string materia = MostrarInputBox("Nombre de la materia:", "Materia");
+            if (string.IsNullOrEmpty(materia)) return;
+
+            string codigo = MostrarInputBox("Código de la materia (ej: MAT101):", "Código");
+            if (string.IsNullOrEmpty(codigo)) return;
+
+            string periodo = MostrarInputBox("Periodo (ej: 2025-1):", "Periodo");
+            if (string.IsNullOrEmpty(periodo)) return;
+
+            string valorTexto = MostrarInputBox("Valor de la nota (0 a 5):", "Nota");
+            if (string.IsNullOrEmpty(valorTexto)) return;
+
+            double valorNota;
+            if (!double.TryParse(valorTexto, out valorNota) || valorNota < 0 || valorNota > 5)
+            {
+                MessageBox.Show("Nota inválida. Debe ser entre 0 y 5.");
+                return;
+            }
+
+            // Guardar
+            servicio.AgregarNota(estudianteID, periodo, valorNota, codigo, materia);
+            MessageBox.Show("Nota registrada correctamente.", "Éxito",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ModificarNotas(object? sender, EventArgs e)
         {
-            MessageBox.Show("Módulo Modificar Notas");
+            ProfesorServicio servicio = new ProfesorServicio();
+            Persona[] estudiantes = servicio.ObtenerEstudiantes();
+
+            // Seleccionar estudiante
+            string[] nombres = new string[estudiantes.Length];
+            for (int i = 0; i < estudiantes.Length; i++)
+            {
+                nombres[i] = estudiantes[i].ID + " - " + estudiantes[i].Nombre;
+            }
+
+            string seleccion = MostrarInputBox("Estudiantes:\n" + string.Join("\n", nombres) +
+                "\n\nEscribe el ID del estudiante:", "Modificar Nota");
+
+            if (string.IsNullOrEmpty(seleccion)) return;
+
+            int estudianteID;
+            if (!int.TryParse(seleccion, out estudianteID))
+            {
+                MessageBox.Show("ID inválido.");
+                return;
+            }
+
+            // Mostrar notas del estudiante
+            Nota[] notas = servicio.ObtenerNotasPorEstudiante(estudianteID);
+
+            if (notas.Length == 0)
+            {
+                MessageBox.Show("Este estudiante no tiene notas.");
+                return;
+            }
+
+            string listaNotas = "";
+            foreach (Nota nota in notas)
+            {
+                listaNotas += $"ID: {nota.IdNota} | {nota.Materia.Nombre} | Nota: {nota.ValorNota}\n";
+            }
+
+            string idNotaTexto = MostrarInputBox("Notas del estudiante:\n" + listaNotas +
+                "\nEscribe el ID de la nota a modificar:", "Seleccionar Nota");
+
+            if (string.IsNullOrEmpty(idNotaTexto)) return;
+
+            int idNota;
+            if (!int.TryParse(idNotaTexto, out idNota))
+            {
+                MessageBox.Show("ID de nota inválido.");
+                return;
+            }
+
+            string nuevoValorTexto = MostrarInputBox("Nuevo valor de la nota (0 a 5):", "Nueva Nota");
+            if (string.IsNullOrEmpty(nuevoValorTexto)) return;
+
+            double nuevoValor;
+            if (!double.TryParse(nuevoValorTexto, out nuevoValor) || nuevoValor < 0 || nuevoValor > 5)
+            {
+                MessageBox.Show("Nota inválida. Debe ser entre 0 y 5.");
+                return;
+            }
+
+            servicio.ModificarNota(idNota, nuevoValor);
+            MessageBox.Show("Nota modificada correctamente.", "Éxito",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void VerEstudiantes(object? sender, EventArgs e)
         {
-            MessageBox.Show("Módulo Ver Estudiantes");
+            ProfesorServicio servicio = new ProfesorServicio();
+            Persona[] estudiantes = servicio.ObtenerEstudiantes();
+
+            if (estudiantes.Length == 0)
+            {
+                MessageBox.Show("No hay estudiantes registrados.");
+                return;
+            }
+
+            string resultado = "LISTA DE ESTUDIANTES\n\n";
+
+            foreach (Persona est in estudiantes)
+            {
+                resultado += $"ID: {est.ID}\n";
+                resultado += $"Nombre: {est.Nombre}\n";
+                resultado += $"Correo: {est.Correo}\n";
+                resultado += $"Documento: {est.Documento}\n";
+                resultado += "─────────────────\n";
+            }
+
+            MessageBox.Show(resultado, "Estudiantes",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // InputBox sencillo (Windows Forms no tiene uno nativo)
+        private string MostrarInputBox(string mensaje, string titulo)
+        {
+            Form inputForm = new Form();
+            inputForm.Text = titulo;
+            inputForm.Size = new Size(400, 250);
+            inputForm.StartPosition = FormStartPosition.CenterParent;
+            inputForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+            inputForm.MaximizeBox = false;
+
+            Label lbl = new Label();
+            lbl.Text = mensaje;
+            lbl.Location = new Point(15, 15);
+            lbl.Size = new Size(360, 130);
+
+            TextBox txt = new TextBox();
+            txt.Location = new Point(15, 150);
+            txt.Size = new Size(350, 25);
+
+            Button btnOk = new Button();
+            btnOk.Text = "Aceptar";
+            btnOk.Location = new Point(210, 180);
+            btnOk.DialogResult = DialogResult.OK;
+
+            Button btnCancelar = new Button();
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.Location = new Point(295, 180);
+            btnCancelar.DialogResult = DialogResult.Cancel;
+
+            inputForm.Controls.Add(lbl);
+            inputForm.Controls.Add(txt);
+            inputForm.Controls.Add(btnOk);
+            inputForm.Controls.Add(btnCancelar);
+            inputForm.AcceptButton = btnOk;
+            inputForm.CancelButton = btnCancelar;
+
+            if (inputForm.ShowDialog() == DialogResult.OK)
+            {
+                return txt.Text.Trim();
+            }
+
+            return "";
         }
 
         private void CerrarSesion(object? sender, EventArgs e)

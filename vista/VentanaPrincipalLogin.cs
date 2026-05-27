@@ -2,6 +2,8 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using SistemaNotas.Servicios;
+using SistemaNotas.Modelo;
 
 namespace InterfazGrafica
 {
@@ -191,7 +193,47 @@ namespace InterfazGrafica
         // Evento ingresar
         private void IngresarSistema(object? sender, EventArgs e)
         {
-            MessageBox.Show("Bienvenido " + txtUsuario.Text);
+            string correo = txtUsuario.Text.Trim();
+            string password = txtPassword.Text.Trim();
+
+            // Validar que no estén vacíos
+            if (string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Por favor ingrese correo y contraseña.", 
+                    "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Intentar login con el JSON
+            LoginServicio servicio = new LoginServicio();
+            Persona usuario = servicio.Login(correo, password);
+
+            if (usuario != null)
+            {
+                this.Hide(); // Ocultar ventana de login
+
+                if (usuario.Rol.ToLower() == "estudiante")
+                {
+                    // Leer grado del JSON (es atributo solo de estudiantes)
+                    LoginServicio servicioGrado = new LoginServicio();
+                    string grado = servicioGrado.ObtenerGrado(usuario.ID);
+
+                    VentanaEstudiante ventana = new VentanaEstudiante(usuario.Nombre, usuario.ID, grado);
+                    ventana.FormClosed += (s, args) => this.Close();
+                    ventana.Show();
+                }
+                else if (usuario.Rol.ToLower() == "docente")
+                {
+                    VentanaProfesor ventana = new VentanaProfesor(usuario.Nombre);
+                    ventana.FormClosed += (s, args) => this.Close();
+                    ventana.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Correo o contraseña incorrectos.", 
+                    "Error de autenticación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Evento limpiar

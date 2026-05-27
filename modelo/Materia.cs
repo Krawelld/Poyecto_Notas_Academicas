@@ -5,8 +5,8 @@ namespace SistemaNotas.Modelo
     public class Materia
     {
         // ATRIBUTOS PRIVADOS
-        private string codigo;
-        private string nombre;
+        private string codigo = string.Empty;
+        private string nombre = string.Empty;
 
         // PROPIEDADES PÚBLICAS
         public string Codigo
@@ -21,7 +21,10 @@ namespace SistemaNotas.Modelo
             set { nombre = Normalizador.NormalizarNombre(value); }
         }
 
-        // CONSTRUCTOR
+        // CONSTRUCTOR VACÍO (necesario para deserializar JSON)
+        public Materia() { }
+
+        // CONSTRUCTOR CON PARÁMETROS
         public Materia(string codigo, string nombre)
         {
             this.codigo = codigo;

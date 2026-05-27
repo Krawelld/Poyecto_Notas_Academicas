@@ -2,14 +2,16 @@ using SistemaNotas.Utilidades;
 
 namespace SistemaNotas.Modelo
 {    
-    public abstract class Persona
+    public class Persona
     {
         // ATRIBUTOS PRIVADOS
         private int id;
         private int edad;
-        private string nombre;
-        private string documento;
-        private string correo;
+        private string nombre = string.Empty;
+        private string documento = string.Empty;
+        private string correo = string.Empty;
+        private string rol = string.Empty;
+        private string password = string.Empty;
 
 
 
@@ -54,14 +56,31 @@ namespace SistemaNotas.Modelo
             set { correo = Normalizador.NormalizarCorreo(value); }
         }
 
-        // CONSTRUCTOR
-        public Persona(int id, int edad, string nombre, string documento, string correo)
+        public string Rol
+        {
+            get { return rol; }
+            set { rol = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+        // CONSTRUCTOR VACÍO (necesario para deserializar JSON)
+        public Persona() { }
+
+        // CONSTRUCTOR CON PARÁMETROS
+        public Persona(int id, int edad, string nombre, string documento, string correo, string rol, string password)
         {
             this.id = id;
             this.edad = edad;
             this.nombre = nombre;
             this.documento = documento;
             this.correo = correo;
+            this.rol = rol;
+            this.password = password;
         }
 
         // MÉTODO PÚBLICO
@@ -70,9 +89,9 @@ namespace SistemaNotas.Modelo
             return $"ID: {id}\n" +
                 $"Nombre: {nombre}\n" +
                 $"Documento: {documento}\n" +
-                $"Correo: {correo}" +
-                $"Edad: {edad}";
-               
+                $"Correo: {correo}\n" +
+                $"Edad: {edad}\n" +
+                $"Rol: {rol}";
         }
     }
 }
