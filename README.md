@@ -71,19 +71,26 @@ dotnet run
 ```
 # :framed_picture: Capturas de pantalla
 
-## :house: Menú principal
 
+## :Loging: Login
+<img src="docs/image1.png">
+
+
+## :house: Menú principal Dash Docente
+
+<img src="docs/image2.png">
 
 
 ---
 
-## :student: Registro de estudiantes
+## :student: Modificar Notas
 
-
+<img src="docs/image.png">
 
 ---
 
 ## :memo: Registro de notas
+<img src="docs/image3.png">
 
 
 
@@ -98,7 +105,7 @@ Cada carpeta cumple una función específica dentro de la aplicación
 
 Almacena diagramas UML y recursos visuales del proyecto
 
-- ·aqui ponga la imagen
+<img src="docs/image4.png">
 
 ## :file_folder: Estructura del proyecto
 
